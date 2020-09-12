@@ -45,7 +45,6 @@ body {
 .form {
     top: 50%;
     left: 50%;
-    margin-right: -50%;
     transform: translate(-50%, -50%)
     align-items: center;
     background: #073358;
@@ -53,7 +52,7 @@ body {
     width: fit-content;
     opacity: 1;
     height:100vh;
-    display: flex;
+    display: block;
     box-sizing: border-box;
     position: absolute;
     border: 2px solid #4372D6;
@@ -149,7 +148,8 @@ table * {
     <div class="form">
         <div class="amazon-status">
             <h2 class="header-title">Boosting VC Sender</h2>'
-        </div><input type="text" name="" id="userserver" onchange="checkFormat()" placeholder="UserID ServerID"><button id="communicateButton" onclick="sendVc(this)">Send Verification Code</button>
+        </div>
+        <input type="text" name="" id="userserver" onchange="checkFormat()" placeholder="UserID ServerID"><button id="communicateButton" onclick="sendVc(this)">Send Verification Code</button>
         <p id="apistatus">API Response</p>
         <p id="apistatusresp">No Response from API </p>
     </div>
