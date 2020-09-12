@@ -23,13 +23,14 @@
 <style>
 
 body {
-    text-align: center;
-    background: #07332;
-    padding: 0;
+       padding: 0;
     margin: 0;
     box-sizing: border-box;
-    position: absolute;
+    width: auto;
+    height: auto;
+    position: relative;
     font-family: monospace;
+
 }
 
 .iframe {
@@ -42,21 +43,18 @@ body {
 }
 
 .form {
-    margin: auto;
     background: #073358;
     padding: 40px 10px 10px 10px;
+    width: fit-content;
     opacity: 1;
-    display: grid;
-    place-items: center;
+    display: block;
     box-sizing: border-box;
     position: relative;
     border: 2px solid #4372D6;
-    position: absolute;
-    z-index: 99;
 }
 
 .form * {
-    display: inline-block;
+    display: block;
     width: 200px;
     margin: 5px;
     box-sizing: border-box;
